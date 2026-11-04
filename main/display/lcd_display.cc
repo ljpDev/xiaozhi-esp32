@@ -420,7 +420,7 @@ void LcdDisplay::SetupUI() {
     top_bar_ = lv_obj_create(container_);
     lv_obj_set_size(top_bar_, LV_HOR_RES, LV_SIZE_CONTENT);
     lv_obj_set_style_radius(top_bar_, 0, 0);
-    lv_obj_set_style_bg_opa(top_bar_, LV_OPA_50, 0);  // 50% opacity background
+    lv_obj_set_style_bg_opa(top_bar_, LV_OPA_0, 0);  // Transparent background
     lv_obj_set_style_bg_color(top_bar_, lvgl_theme->background_color(), 0);
     lv_obj_set_style_border_width(top_bar_, 0, 0);
     lv_obj_set_style_pad_all(top_bar_, 0, 0);
@@ -938,7 +938,7 @@ void LcdDisplay::SetupUI() {
     top_bar_ = lv_obj_create(screen);
     lv_obj_set_size(top_bar_, LV_HOR_RES, LV_SIZE_CONTENT);
     lv_obj_set_style_radius(top_bar_, 0, 0);
-    lv_obj_set_style_bg_opa(top_bar_, LV_OPA_50, 0);  // 50% opacity background
+    lv_obj_set_style_bg_opa(top_bar_, LV_OPA_TRANSP, 0);  // Transparent background
     lv_obj_set_style_bg_color(top_bar_, lvgl_theme->background_color(), 0);
     lv_obj_set_style_border_width(top_bar_, 0, 0);
     lv_obj_set_style_pad_all(top_bar_, 0, 0);
@@ -947,16 +947,9 @@ void LcdDisplay::SetupUI() {
     lv_obj_set_style_pad_left(top_bar_, lvgl_theme->spacing(4), 0);
     lv_obj_set_style_pad_right(top_bar_, lvgl_theme->spacing(4), 0);
     lv_obj_set_flex_flow(top_bar_, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_align(top_bar_, LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER,
-                          LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_flex_align(top_bar_, LV_FLEX_ALIGN_END, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_set_scrollbar_mode(top_bar_, LV_SCROLLBAR_MODE_OFF);
     lv_obj_align(top_bar_, LV_ALIGN_TOP_MID, 0, 0);
-
-    // Left icon
-    network_label_ = lv_label_create(top_bar_);
-    lv_label_set_text(network_label_, "");
-    lv_obj_set_style_text_font(network_label_, icon_font, 0);
-    lv_obj_set_style_text_color(network_label_, lvgl_theme->text_color(), 0);
 
     // Right icons container
     lv_obj_t* right_icons = lv_obj_create(top_bar_);
@@ -979,7 +972,13 @@ void LcdDisplay::SetupUI() {
     lv_obj_set_style_text_color(battery_label_, lvgl_theme->text_color(), 0);
     lv_obj_set_style_margin_left(battery_label_, lvgl_theme->spacing(2), 0);
 
-    /* Layer 2: Status bar - for center text labels */
+    // Keep network status at the far right of the top bar.
+    network_label_ = lv_label_create(right_icons);
+    lv_label_set_text(network_label_, "");
+    lv_obj_set_style_text_font(network_label_, icon_font, 0);
+    lv_obj_set_style_text_color(network_label_, lvgl_theme->text_color(), 0);
+
+    /* Layer 2: Status bar - for clock and status text */
     status_bar_ = lv_obj_create(screen);
     lv_obj_set_size(status_bar_, LV_HOR_RES, LV_SIZE_CONTENT);
     lv_obj_set_style_radius(status_bar_, 0, 0);
@@ -1001,12 +1000,12 @@ void LcdDisplay::SetupUI() {
     lv_obj_add_flag(notification_label_, LV_OBJ_FLAG_HIDDEN);
 
     status_label_ = lv_label_create(status_bar_);
-    lv_obj_set_width(status_label_, LV_HOR_RES * 0.75);
+    lv_obj_set_width(status_label_, LV_HOR_RES * 0.6);
     lv_label_set_long_mode(status_label_, LV_LABEL_LONG_SCROLL_CIRCULAR);
-    lv_obj_set_style_text_align(status_label_, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_style_text_align(status_label_, LV_TEXT_ALIGN_LEFT, 0);
     lv_obj_set_style_text_color(status_label_, lvgl_theme->text_color(), 0);
     lv_label_set_text(status_label_, Lang::Strings::INITIALIZING);
-    lv_obj_align(status_label_, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(status_label_, LV_ALIGN_LEFT_MID, lvgl_theme->spacing(4), 0);
 
 #if CONFIG_USE_MULTILINE_CHAT_MESSAGE
     /* Bottom bar - auto height, grows upward with wrapped text */
@@ -1015,7 +1014,7 @@ void LcdDisplay::SetupUI() {
     lv_obj_set_height(bottom_bar_, LV_SIZE_CONTENT);
     lv_obj_set_style_radius(bottom_bar_, 0, 0);
     lv_obj_set_style_bg_color(bottom_bar_, lvgl_theme->background_color(), 0);
-    lv_obj_set_style_bg_opa(bottom_bar_, LV_OPA_50, 0);
+    lv_obj_set_style_bg_opa(bottom_bar_, LV_OPA_TRANSP, 0);
     lv_obj_set_style_text_color(bottom_bar_, lvgl_theme->text_color(), 0);
     lv_obj_set_style_pad_all(bottom_bar_, lvgl_theme->spacing(4), 0);
     lv_obj_set_style_border_width(bottom_bar_, 0, 0);
@@ -1035,6 +1034,7 @@ void LcdDisplay::SetupUI() {
     /* Top layer: Bottom bar - fixed height at bottom */
     bottom_bar_ = lv_obj_create(screen);
     lv_obj_set_size(bottom_bar_, LV_HOR_RES, text_font->line_height + lvgl_theme->spacing(8));
+    lv_obj_set_style_bg_opa(bottom_bar_, LV_OPA_TRANSP, 0);
     lv_obj_set_style_radius(bottom_bar_, 0, 0);
     lv_obj_set_style_bg_color(bottom_bar_, lvgl_theme->background_color(), 0);
     lv_obj_set_style_text_color(bottom_bar_, lvgl_theme->text_color(), 0);
@@ -1310,9 +1310,9 @@ void LcdDisplay::SetTheme(Theme* theme) {
         lv_obj_set_style_bg_color(container_, lvgl_theme->background_color(), 0);
     }
 
-    // Update top bar background color with 50% opacity
+    // Keep the top bar transparent when switching themes.
     if (top_bar_ != nullptr) {
-        lv_obj_set_style_bg_opa(top_bar_, LV_OPA_50, 0);
+        lv_obj_set_style_bg_opa(top_bar_, LV_OPA_TRANSP, 0);
         lv_obj_set_style_bg_color(top_bar_, lvgl_theme->background_color(), 0);
     }
 
@@ -1405,9 +1405,9 @@ void LcdDisplay::SetTheme(Theme* theme) {
         lv_obj_set_style_text_color(emoji_label_, lvgl_theme->text_color(), 0);
     }
 
-    // Update bottom bar background color with 50% opacity
+    // Keep subtitles transparent when switching themes.
     if (bottom_bar_ != nullptr) {
-        lv_obj_set_style_bg_opa(bottom_bar_, LV_OPA_50, 0);
+        lv_obj_set_style_bg_opa(bottom_bar_, LV_OPA_TRANSP, 0);
         lv_obj_set_style_bg_color(bottom_bar_, lvgl_theme->background_color(), 0);
     }
 #endif
