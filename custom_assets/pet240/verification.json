@@ -1,0 +1,33 @@
+{
+  "variant": "atk-dnesp32s3-pet240",
+  "images": 21,
+  "image_size": "240x240",
+  "assets_bytes": 3085557,
+  "partition_bytes": 8388608,
+  "text_font": "font_noto_sans_common_20_4.bin",
+  "speech_models": "srmodels.bin",
+  "images_sha256": {
+    "angry.png": "958f8c1261544516a42fb42a0f7b027a4002833bcd24415cf2e0f70d12c81f3e",
+    "confident.png": "17166aabfb57f1c7fc62df7c58b6b761f69b75a72998dd79c9d3c68958c834e8",
+    "confused.png": "9d8f6f7d096d777ed88e68d5edc0136b7992f05bcd3813323b79ace08a81ca1a",
+    "cool.png": "4fb54c25b6ebc0a53e40a8ee695aaab59aa39ae755970794d3eb56bb5df71cab",
+    "crying.png": "9c4c9bf4a5d28fe1c44cb2343741495da54a5ea3f8169a50884cff359e0cd092",
+    "delicious.png": "759b7653d5b761e3b488d833706b5776e0aa114652280f7f424f29d8fc848740",
+    "embarrassed.png": "82acfef3cd436087408764e6474cae1beae3c6fe0ede5a2c79a1bc6849e8ab39",
+    "funny.png": "9d96a754bdc926ac5612766b954a012fb3ddd26c2cc0c59237c39359409b816b",
+    "happy.png": "86a153a148c1d2c25d4e537c9767a80924947e646bc25895b2997a7a53c96aae",
+    "kissy.png": "855e5e7df9eb2e078d01ac7d0856b4a6ce48589e2a34d8f36ca9e54123429cab",
+    "laughing.png": "30c5ad069635d2d61c2d18596d83b36a2989141a03402f831777bc8ff42426f1",
+    "loving.png": "ee9f653968cb153880bcde85ce199e4b1876d8bcc65af6f74a7c6b1060f694fa",
+    "neutral.png": "49d2c777b6f1a1dc9398c7a35f5d3378947984782447f9dff9f4c5b545450b3f",
+    "relaxed.png": "8328af01215ef77de3b8a9ce634efc28e377647eef597e28f9ca6106fae48615",
+    "sad.png": "56dce3a54aafc9445bc2a28a4ec65d9de7f08968b5f08a7ed2f779ea8e0787a1",
+    "shocked.png": "06ef310aacd86ac16251d74ce906068581a8b108f3b82e6ce0f4712aaaa78464",
+    "silly.png": "2a3d23a4919bfb70f69b19c42bc7883e79c1eab63261a2df5514bf1571753d68",
+    "sleepy.png": "6f1979aaeed3b36b298f90d135f13edad4b3d5174159de704984e65172bf9d88",
+    "surprised.png": "418e99b4496814e4c969fb03ad9b4f9bee60bde9f88e5bfe714fa44a146d9211",
+    "thinking.png": "2afae5f4aca83f3bf83543092847bb0948d252b3f781a73544c9e3c37f81f9da",
+    "winking.png": "f8ee174afab03c81937f301a6a302f10b33bbb99f23238a913e40b5eae0cc056"
+  },
+  "merged_sha256": "b337b29a84a6506766a87b486eba7cabae829c8c0ebf5b45ea5d4a8be912829d"
+}

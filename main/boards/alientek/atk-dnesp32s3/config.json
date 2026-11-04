@@ -10,6 +10,22 @@
                 "CONFIG_CAMERA_OV2640_AUTO_DETECT_DVP_INTERFACE_SENSOR=y",
                 "CONFIG_CAMERA_OV2640_DVP_YUV422_240X240_25FPS=y"
             ]
+        },
+        {
+            "name": "atk-dnesp32s3-pet240",
+            "sdkconfig_append": [
+                "CONFIG_CAMERA_OV2640=y",
+                "CONFIG_CAMERA_OV2640_AUTO_DETECT_DVP_INTERFACE_SENSOR=y",
+                "CONFIG_CAMERA_OV2640_DVP_YUV422_240X240_25FPS=y",
+                "CONFIG_USE_DEFAULT_MESSAGE_STYLE=y",
+                "CONFIG_USE_WECHAT_MESSAGE_STYLE=n",
+                "CONFIG_USE_EMOTE_MESSAGE_STYLE=n",
+                "CONFIG_FLASH_DEFAULT_ASSETS=n",
+                "CONFIG_FLASH_EXPRESSION_ASSETS=n",
+                "CONFIG_FLASH_NONE_ASSETS=n",
+                "CONFIG_FLASH_CUSTOM_ASSETS=y",
+                "CONFIG_CUSTOM_ASSETS_FILE=\"../custom_assets/pet240/assets.bin\""
+            ]
         }
     ]
 }
